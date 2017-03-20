@@ -1,0 +1,14 @@
+{
+  "name": "language-SAL",
+  "version": "0.0.0",
+  "description": "Symbolic Analysis Laboratory (SAL) support for Atom",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrew-j-abbate/language-SAL"
+  },
+  "license": "MIT"
+}

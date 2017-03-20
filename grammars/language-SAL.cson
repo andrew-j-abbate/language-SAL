@@ -1,0 +1,122 @@
+# @Author: aja97
+# @Date:   2017-03-17T11:05:37-04:00
+# @Last modified by:   aja97
+# @Last modified time: 2017-03-20T13:55:06-04:00
+
+
+
+'scopeName': 'source.SAL'
+'name': 'Symbolic Analysis Laboratory'
+'fileTypes': ['sal']
+
+patterns: [
+  {
+    include: '#types'
+  }
+  {
+    include: '#characters'
+  }
+  {
+    include: '#tokens'
+  }
+  {
+    include: '#comments'
+  }
+  {
+    include: '#delim'
+  }
+  {
+    include: '#varscopes'
+  }
+  {
+    include: '#constructs'
+  }
+  {
+    include: '#temporal'
+  }
+]
+
+repository:
+  types:
+    patterns: [
+      {
+      match: '([a-zA-Z_]+\\w*)(\\s*:\\s*)'
+      captures:
+          1:
+            name: 'type.name.sal'
+          2:
+            name: 'type.colon.sal'
+      }
+    ]
+  characters:
+    patterns: [
+      {
+        match: "(\\=|\\[|\\]|\\{|\\}|\\||\\-|\\+|\\/|\\=\\>|\\<\\=\\>|\\*|\\,|\\.\\.|\\(|\\)|\\[\\#|\\#\\]|\\(\\#|\\#\\)|\\:\\=|\\-\\-\\>|\\/\\=|\\>\\=|\\<\\=|\\<|\\>|\\.|\\?|\\!|\\;)"
+        name: 'characters.reserved.sal'
+      }
+    ]
+  tokens:
+    patterns: [
+      {
+        match: '\\b(AND|and|ARRAY|array|BOOLEAN|boolean|bool|BEGIN|begin|ELSE|DIV|div|else|ELSIF|elsif|ENDIF|endif|EXISTS|exists|FALSE|false|FORALL|forall|IF|if|IMPLIES|implies|IN|in|INTEGER|integer|LET|let|NATURAL|natural|nat|NZREAL|nzreal|NZINTEGER|nzinteger|OF|of|OR|or|TYPE|type|THEN|then|TRUE|true|RENAME|REAL|real|rename|WITH|with|XOR|xor)\\b'
+        name : 'token.reserved.sal'
+      }
+        match: "\\b[a-zA-Z_]+\\w*\\'\\s+"
+        name : 'token.nextstate.sal'
+    ]
+  delim:
+    patterns: [
+      {
+          match: '\\b(END|end)\\b'
+          name : 'END.delim.sal'
+      }
+    ]
+
+  constructs:
+    patterns: [
+      {
+          match: '(\\s*(INITIALIZATION|initialzation|DEFINITION|definition|TRANSITION|transition|CONTEXT|context|MODULE|module|THEOREM|theorem|CLAIM|claim|DATATYPE|datatype|LEMMA|lemma|OBLIGATION|obligation)\\s*)'
+          name : 'construct.declaration.sal'
+      }
+    ]
+
+  varscopes:
+    patterns: [
+      {
+          match: '(INPUT\\s+|input\\s+)(\\w+\\s*|(\\s*\\w+\\s*,\\s*\\w+)+)(\\s*:\\s*)'
+          captures:
+            1:
+              name: 'INPUT.inputvar.varscope.sal'
+            2:
+              name: 'name.inputvar.varscope.sal'
+            3:
+              name: 'colon.inputvar.varscope.sal'
+          name : 'inputvar.varscope.sal'
+      },
+      {
+          match: '(OUTPUT\\s+|output\\s+|LOCAL\\s+|local\\s+|GLOBAL\\s+|global\\s+)(\\s*\\w+\\s*|(\\s*\\w+\\s*,\\s*\\w+)+)(\\s*:\\s*)'
+          captures:
+            1:
+              name: 'OUTPUT.outputvar.varscope.sal'
+            2:
+              name: 'name.outputvar.varscope.sal'
+            3:
+              name: 'colon.outputvar.varscope.sal'
+          name : 'outputvar.varscope.sal'
+      }
+    ]
+  temporal:
+    patterns: [
+      {
+        match: '\\b(G|F|E|X|A|U|R)\\b'
+        name: 'temporalLogic.operators.sal'
+      }
+    ]
+  comments:
+    patterns: [
+      {
+        begin: '%'
+        end  : '\\n'
+        name : 'comment.line.sal'
+      }
+    ]

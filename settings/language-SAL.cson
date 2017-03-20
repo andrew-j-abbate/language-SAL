@@ -1,0 +1,15 @@
+# @Author: aja97
+# @Date:   2017-03-18T17:26:48-04:00
+# @Last modified by:   aja97
+# @Last modified time: 2017-03-20T13:24:31-04:00
+
+
+
+'.source.sal':
+  'editor':
+    'autoIndentOnPaste': true
+    'softTabs': true
+    'tabLength': 4
+    'commentStart': '% '
+    'increaseIndentPattern': '^\\s*(\\[\\#|IF|if|ELSE|else|ELSIF|elsif|MODULE|module|CONTEXT|context|INITIALIZATION|initialization|TRANSITION|transition|DEFINITION|definition|BEGIN|begin)\\b.*:\\s*$'
+    'decreaseIndentPattern': '^\\s*(\\#\\]|IF|if|ELSE|else|ELSIF|elsif|END|ENDIF|\\])\\b.*:\\s*$'
