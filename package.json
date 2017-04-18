@@ -1,6 +1,6 @@
 {
   "name": "language-SAL",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Symbolic Analysis Laboratory (SAL) support for Atom",
   "engines": {
     "atom": "*"
