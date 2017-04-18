@@ -3,7 +3,7 @@
   "version": "0.5.1",
   "description": "Symbolic Analysis Laboratory (SAL) support for Atom",
   "engines": {
-    "atom": "*"
+    "atom": ">=1.13.0 <2.0.0"
   },
   "dependencies": {},
   "repository": {

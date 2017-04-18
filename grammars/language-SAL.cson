@@ -1,11 +1,11 @@
 # @Author: aja97
 # @Date:   2017-03-17T11:05:37-04:00
 # @Last modified by:   aja97
-# @Last modified time: 2017-03-21T15:19:01-04:00
+# @Last modified time: 2017-04-18T11:19:13-04:00
 
 
 
-'scopeName': 'source.SAL'
+'scopeName': 'source'
 'name': 'Symbolic Analysis Laboratory'
 'fileTypes': ['sal']
 
@@ -43,32 +43,32 @@ repository:
       match: '([a-zA-Z_]+\\w*)(\\s*:\\s*)'
       captures:
           1:
-            name: 'type.name.sal'
+            name: 'type.name'
           2:
-            name: 'type.colon.sal'
+            name: 'type.colon'
       }
     ]
   characters:
     patterns: [
       {
         match: "(\\=|\\[|\\]|\\{|\\}|\\||\\-|\\+|\\/|\\=\\>|\\<\\=\\>|\\*|\\,|\\.\\.|\\(|\\)|\\[\\#|\\#\\]|\\(\\#|\\#\\)|\\:\\=|\\-\\-\\>|\\/\\=|\\>\\=|\\<\\=|\\<|\\>|\\.|\\?|\\!|\\;)"
-        name: 'characters.reserved.sal'
+        name: 'characters.reserved'
       }
     ]
   tokens:
     patterns: [
       {
         match: '\\b(AND|and|ARRAY|array|BOOLEAN|boolean|bool|BEGIN|begin|ELSE|DIV|div|else|ELSIF|elsif|ENDIF|endif|EXISTS|exists|FALSE|false|FORALL|forall|IF|if|IMPLIES|implies|IN|in|INTEGER|integer|LET|let|NATURAL|natural|nat|NZREAL|nzreal|NZINTEGER|nzinteger|OF|of|OR|or|TYPE|type|THEN|then|TRUE|true|RENAME|REAL|real|rename|WITH|with|XOR|xor)\\b'
-        name : 'token.reserved.sal'
+        name : 'token.reserved'
       }
         match: "(\\b[a-zA-Z_]+\\w*\\')"
-        name : 'token.nextstate.sal'
+        name : 'token.nextstate'
     ]
   delim:
     patterns: [
       {
           match: '\\b(END|end)\\b'
-          name : 'END.delim.sal'
+          name : 'delim'
       }
     ]
 
@@ -76,7 +76,7 @@ repository:
     patterns: [
       {
           match: '(\\s*(INITIALIZATION|initialzation|DEFINITION|definition|TRANSITION|transition|CONTEXT|context|MODULE|module|THEOREM|theorem|CLAIM|claim|DATATYPE|datatype|LEMMA|lemma|OBLIGATION|obligation)\\s*)'
-          name : 'construct.declaration.sal'
+          name : 'construct.declaration'
       }
     ]
 
@@ -86,30 +86,30 @@ repository:
           match: '(INPUT\\s+|input\\s+)(\\w+\\s*|(\\s*\\w+\\s*,\\s*\\w+)+)(\\s*:\\s*)'
           captures:
             1:
-              name: 'INPUT.inputvar.varscope.sal'
+              name: 'INPUT.inputvar.varscope'
             2:
-              name: 'name.inputvar.varscope.sal'
+              name: 'name.inputvar.varscope'
             3:
-              name: 'colon.inputvar.varscope.sal'
-          name : 'inputvar.varscope.sal'
+              name: 'colon.inputvar.varscope'
+          name : 'inputvar.varscope'
       },
       {
           match: '(OUTPUT\\s+|output\\s+|LOCAL\\s+|local\\s+|GLOBAL\\s+|global\\s+)(\\s*\\w+\\s*|(\\s*\\w+\\s*,\\s*\\w+)+)(\\s*:\\s*)'
           captures:
             1:
-              name: 'OUTPUT.outputvar.varscope.sal'
+              name: 'OUTPUT.outputvar.varscope'
             2:
-              name: 'name.outputvar.varscope.sal'
+              name: 'name.outputvar.varscope'
             3:
-              name: 'colon.outputvar.varscope.sal'
-          name : 'outputvar.varscope.sal'
+              name: 'colon.outputvar.varscope'
+          name : 'outputvar.varscope'
       }
     ]
   temporal:
     patterns: [
       {
         match: '\\b(G|F|E|X|A|U|R)\\b'
-        name: 'temporalLogic.operators.sal'
+        name: 'temporalLogic.operators'
       }
     ]
   comments:
@@ -117,6 +117,6 @@ repository:
       {
         begin: '%'
         end  : '\\n'
-        name : 'comment.line.sal'
+        name : 'comment.line'
       }
     ]
