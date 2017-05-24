@@ -2,7 +2,7 @@
 * @Author: aja97
 * @Date:   2017-03-17T11:58:50-04:00
  * @Last modified by:   aja97
- * @Last modified time: 2017-04-18T11:24:18-04:00
+ * @Last modified time: 2017-05-24T15:17:28-04:00
 */
 
 atom-text-editor {
@@ -10,6 +10,12 @@ atom-text-editor {
   font-style: italic;
 }
 .syntax--type.syntax--colon {
+  font-style: normal;
+}
+.syntax--dec.syntax--name {
+  font-style: italic;
+}
+.syntax--dec.syntax--colon {
   font-style: normal;
 }
 .syntax--characters.syntax--reserved {
@@ -41,18 +47,24 @@ font-style: italic;
 .syntax--INPUT.syntax--inputvar.syntax--varscope {
   font-weight: bold;
 }
-.syntax--name.syntax--inputvar.syntax--varscope {
-  font-style: italic;
-}
 .syntax--OUTPUT.syntax--outputvar.syntax--varscope {
   font-weight: bold;
   color: lightcoral;
 }
-.syntax--name.syntax--outputvar.syntax--varscope {
-  font-style: italic;
-}
-.syntax--temporalLogic.syntax--operators {
+.syntax--operators.syntax--temporalLogic.syntax--specification {
   font-weight: bold;
-  color: #b3ffd9;
+  color: lightcoral;
+}
+.syntax--openParenthesis.syntax--temporalLogic.syntax--specification {
+  color: #ffffe6;
+  font-weight: bold;
+}
+.syntax--openParenthesis.syntax--function.syntax--declaration {
+  color: #ffffe6;
+  font-weight: bold;
+}
+.syntax--name.syntax--function.syntax--declaration {
+  color: #80b3ff;
+  font-style: italic;
 }
 }

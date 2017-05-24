@@ -1,7 +1,7 @@
 # @Author: aja97
 # @Date:   2017-03-17T11:05:37-04:00
 # @Last modified by:   aja97
-# @Last modified time: 2017-04-18T11:25:11-04:00
+# @Last modified time: 2017-05-24T15:17:52-04:00
 
 
 
@@ -14,6 +14,9 @@ patterns: [
     include: '#types'
   }
   {
+    include: '#decs'
+  }
+  {
     include: '#characters'
   }
   {
@@ -21,9 +24,6 @@ patterns: [
   }
   {
     include: '#comments'
-  }
-  {
-    include: '#delim'
   }
   {
     include: '#varscopes'
@@ -34,48 +34,47 @@ patterns: [
   {
     include: '#temporal'
   }
+  {
+    include: '#function'
+  }
 ]
 
 repository:
   types:
     patterns: [
       {
-      match: '([a-zA-Z_]+\\w*)(\\s*:\\s*)'
-      captures:
-          1:
-            name: 'type.name'
-          2:
-            name: 'type.colon'
+        match: '([a-zA-Z_]\\w*\\s*)(?=\\:)'
+        name: 'type.name'
+      }
+    ]
+  decs:
+    patterns: [
+      {
+        match: '[a-zA-Z_]\\w*(?=(\\,\\s*[a-zA-Z_]\\w*)+\\:)'
+        name: 'dec.name'
       }
     ]
   characters:
     patterns: [
       {
-        match: "(\\=|\\[|\\]|\\{|\\}|\\||\\-|\\+|\\/|\\=\\>|\\<\\=\\>|\\*|\\,|\\.\\.|\\(|\\)|\\[\\#|\\#\\]|\\(\\#|\\#\\)|\\:\\=|\\-\\-\\>|\\/\\=|\\>\\=|\\<\\=|\\<|\\>|\\.|\\?|\\!|\\;)"
+        match: "(\\=|\\[|\\]|\\{|\\}|\\||\\-|\\+|\\/|\\=\\>|\\<\\=\\>|\\*|\\,|\\.\\.|\\(|\\)|\\#|\\:\\=|\\-\\-\\>|\\/\\=|\\>\\=|\\<\\=|\\<|\\>|\\.|\\?|\\!|\\;)"
         name: 'characters.reserved'
       }
     ]
   tokens:
     patterns: [
       {
-        match: '\\b(AND|and|ARRAY|array|BOOLEAN|boolean|bool|BEGIN|begin|ELSE|DIV|div|else|ELSIF|elsif|ENDIF|endif|EXISTS|exists|FALSE|false|FORALL|forall|IF|if|IMPLIES|implies|IN|in|INTEGER|integer|LET|let|NATURAL|natural|nat|NOT|not|NZREAL|nzreal|NZINTEGER|nzinteger|OF|of|OR|or|TYPE|type|THEN|then|TRUE|true|RENAME|REAL|real|rename|WITH|with|XOR|xor)\\b'
+        match: '\\b(AND|and|ARRAY|array|BOOLEAN|boolean|bool|BEGIN|begin|ELSE|DIV|div|else|ELSIF|elsif|END|end|ENDIF|endif|EXISTS|exists|FALSE|false|FORALL|forall|IF|if|IMPLIES|implies|IN|in|INTEGER|integer|LAMBDA|lambda|LET|let|NATURAL|natural|nat|NOT|not|NZREAL|nzreal|NZINTEGER|nzinteger|OF|of|OR|or|TYPE|type|THEN|then|TRUE|true|RENAME|REAL|real|rename|WITH|with|XOR|xor)\\b'
         name : 'token.reserved'
-      }
+      },
         match: "(\\b[a-zA-Z_]+\\w*\\')"
         name : 'token.nextstate'
-    ]
-  delim:
-    patterns: [
-      {
-          match: '\\b(END|end)\\b'
-          name : 'delim'
-      }
     ]
 
   constructs:
     patterns: [
       {
-          match: '(\\s*(INITIALIZATION|initialzation|DEFINITION|definition|TRANSITION|transition|CONTEXT|context|MODULE|module|THEOREM|theorem|CLAIM|claim|DATATYPE|datatype|LEMMA|lemma|OBLIGATION|obligation)\\s*)'
+          match: '(INITIALIZATION|initialzation|DEFINITION|definition|TRANSITION|transition|CONTEXT|context|MODULE|module|THEOREM|theorem|CLAIM|claim|DATATYPE|datatype|LEMMA|lemma|OBLIGATION|obligation)\\s+'
           name : 'construct.declaration'
       }
     ]
@@ -83,33 +82,24 @@ repository:
   varscopes:
     patterns: [
       {
-          match: '(INPUT\\s+|input\\s+)(\\w+\\s*|(\\s*\\w+\\s*,\\s*\\w+)+)(\\s*:\\s*)'
-          captures:
-            1:
-              name: 'INPUT.inputvar.varscope'
-            2:
-              name: 'name.inputvar.varscope'
-            3:
-              name: 'colon.inputvar.varscope'
-          name : 'inputvar.varscope'
+          match: '(INPUT|input)\\s+'
+          name : 'INPUT.inputvar.varscope'
       },
       {
-          match: '(OUTPUT\\s+|output\\s+|LOCAL\\s+|local\\s+|GLOBAL\\s+|global\\s+)(\\s*\\w+\\s*|(\\s*\\w+\\s*,\\s*\\w+)+)(\\s*:\\s*)'
-          captures:
-            1:
-              name: 'OUTPUT.outputvar.varscope'
-            2:
-              name: 'name.outputvar.varscope'
-            3:
-              name: 'colon.outputvar.varscope'
-          name : 'outputvar.varscope'
+          match: '(OUTPUT|output|LOCAL|local|GLOBAL|global)\\s+'
+          name : 'OUTPUT.outputvar.varscope'
       }
     ]
   temporal:
     patterns: [
       {
-        match: '\\b(G|F|E|X|A|U|R)\\b'
-        name: 'temporalLogic.operators'
+        match: '\\b(G|F|E|X|A|U|R)\\b(\\()'
+        captures:
+          1:
+            name: 'operators.temporalLogic.specification'
+          2:
+            name: 'openParenthesis.temporalLogic.specification'
+        name : 'temporalLogic.specification'
       }
     ]
   comments:
@@ -118,5 +108,17 @@ repository:
         begin: '%'
         end  : '\\n'
         name : 'comment.line'
+      }
+    ]
+  function:
+    patterns: [
+      {
+        match: "([a-zA-Z_]\\w*)(\\()"
+        captures:
+          1:
+            name : 'name.function.declaration'
+          2:
+            name:  'openParenthesis.function.declaration'
+          name: 'function.declaration'
       }
     ]
