@@ -1,7 +1,7 @@
 # @Author: aja97
 # @Date:   2017-03-17T11:05:37-04:00
 # @Last modified by:   aja97
-# @Last modified time: 2017-05-24T15:17:52-04:00
+# @Last modified time: 2017-06-02T12:02:48-04:00
 
 
 
@@ -64,7 +64,7 @@ repository:
   tokens:
     patterns: [
       {
-        match: '\\b(AND|and|ARRAY|array|BOOLEAN|boolean|bool|BEGIN|begin|ELSE|DIV|div|else|ELSIF|elsif|END|end|ENDIF|endif|EXISTS|exists|FALSE|false|FORALL|forall|IF|if|IMPLIES|implies|IN|in|INTEGER|integer|LAMBDA|lambda|LET|let|NATURAL|natural|nat|NOT|not|NZREAL|nzreal|NZINTEGER|nzinteger|OF|of|OR|or|TYPE|type|THEN|then|TRUE|true|RENAME|REAL|real|rename|WITH|with|XOR|xor)\\b'
+        match: '\\b(AND|and|ARRAY|array|BOOLEAN|boolean|bool|BEGIN|begin|ELSE|DIV|div|else|ELSIF|elsif|END|end|ENDIF|endif|EXISTS|exists|FALSE|false|FORALL|forall|IF|if|IMPLIES|implies|IMPORTING|importing|IN|in|INTEGER|integer|LAMBDA|lambda|LET|let|NATURAL|natural|nat|NOT|not|NZREAL|nzreal|NZINTEGER|nzinteger|OF|of|OR|or|TYPE|type|THEN|then|TRUE|true|RENAME|REAL|real|rename|WITH|with|XOR|xor)\\b'
         name : 'token.reserved'
       },
         match: "(\\b[a-zA-Z_]+\\w*\\')"
