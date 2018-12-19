@@ -47,13 +47,6 @@ repository:
         name: 'type.name'
       }
     ]
-  decs:
-    patterns: [
-      {
-        match: '[a-zA-Z_]\\w*(?=(\\,\\s*[a-zA-Z_]\\w*)+\\:)'
-        name: 'dec.name'
-      }
-    ]
   characters:
     patterns: [
       {
@@ -70,7 +63,6 @@ repository:
         match: "(\\b[a-zA-Z_]+\\w*\\')"
         name : 'token.nextstate'
     ]
-
   constructs:
     patterns: [
       {
@@ -78,7 +70,6 @@ repository:
           name : 'construct.declaration'
       }
     ]
-
   varscopes:
     patterns: [
       {
@@ -122,3 +113,10 @@ repository:
           name: 'function.declaration'
       }
     ]
+    decs:
+      patterns: [
+        {
+          match: '[a-zA-Z_]\\w*(?=(\\,\\s*[a-zA-Z_]\\w*)+\\:)'
+          name: 'dec.name'
+        }
+      ]
